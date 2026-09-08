@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ruben Verwiel — Commerciële Economie &amp; AI</title>
+<meta name="description" content="Portfolio van Ruben Verwiel. Commerciële Economie & AI — slimme technologie inzetten om commerciële processen te versnellen.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<style>
+    /* ==========================================================================
+       CSS VARIABELEN
+       ========================================================================== */
+    :root {
+      --bg-dark: #12161C;
+      --bg-dark-card: #1A2029;
+      --bg-light: #F7F8F9;
+      --bg-light-card: #FFFFFF;
+
+      --text-dark-theme: #E8EBEE;
+      --text-dark-muted: #9CA8B4;
+      --text-light-theme: #1A1F26;
+      --text-light-muted: #536071;
+      --accent: #4ADE80;
+      --accent-hover: #22C55E;
+      --accent-soft: rgba(74, 222, 128, 0.12);
+      --border-dark: #27313F;
+      --border-light: #E2E8F0;
+      --font-heading: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --max-width: 1040px;
+      --header-height: 72px;
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --transition: 0.25s ease;
+    }
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+    body {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      color: var(--text-dark-theme);
+      background-color: var(--bg-dark);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    /* Toegankelijke focus rings */
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    /* ==========================================================================
+       SECTIES (Afwisselend ritme)
+       ========================================================================== */
+    .section {
+      padding: 5.5rem 0;
+    }
+    .section-dark {
+      background-color: var(--bg-dark);
+      color: var(--text-dark-theme);
+    }
+    .section-light {
+      background-color: var(--bg-light);
+      color: var(--text-light-theme);
+    }
+    .section-header {
+      margin-bottom: 3rem;
+    }
+    .section-label {
+      display: inline-block;
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+    .section-light .section-label {
+      color: #15803D; /* Contrastrijk groen op lichte achtergrond */
+    }
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: 2.25rem;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+    .section-intro {
+      font-size: 1.15rem;
+      margin-top: 0.75rem;
+      color: var(--text-dark-muted);
+      max-width: 65ch;
+    }
+    .text-content p {
+      max-width: 68ch;
+      margin-bottom: 1.4rem;
+      font-size: 1.075rem;
+      color: #2D3748;
+    }
+    .text-content p:last-child {
+      margin-bottom: 0;
+    }
+    /* ==========================================================================
+       STICKY NAVBAR
+       ========================================================================== */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--header-height);
+      z-index: 1000;
+      background-color: transparent;
+      transition: background-color var(--transition), border-color var(--transition), backdrop-filter var(--transition);
+      border-bottom: 1px solid transparent;
+    }
+    .navbar.scrolled {
+      background-color: rgba(18, 22, 28, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom-color: var(--border-dark);
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+    }
+    .nav-logo {
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+    .nav-logo span {
+      color: var(--accent);
+    }
+    .nav-list {
+      display: flex;
+      align-items: center;
+      list-style: none;
+      gap: 2rem;
+    }
+    .nav-link {
+      text-decoration: none;
+      color: var(--text-dark-muted);
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color var(--transition);
+      position: relative;
+    }
+    .nav-link:hover, .nav-link.active {
+      color: var(--text-dark-theme);
+    }
+    .nav-link.active::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: var(--accent);
+      border-radius: 2px;
+    }
+    .nav-link-cta {
+      color: var(--accent);
+    }
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      margin: 5px 0;
+      background-color: #FFFFFF;
+      transition: transform var(--transition), opacity var(--transition);
+    }
+    /* ==========================================================================
+       HERO
+       ========================================================================== */
+    .hero-section {
+      padding-top: calc(var(--header-height) + 4rem);
+      padding-bottom: 6rem;
+      min-height: 85vh;
+      display: flex;
+      align-items: center;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      align-items: center;
+      gap: 4rem;
+    }
+    .hero-avatar-wrapper {
+      order: 2;
+      display: flex;
+      justify-content: center;
+    }
+    .hero-avatar, .hero-avatar-fallback {
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--border-dark);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+    .hero-avatar-fallback {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--bg-dark-card);
+      color: var(--accent);
+      font-family: var(--font-heading);
+      font-size: 4rem;
+      font-weight: 700;
+    }
+    .hero-content {
+      order: 1;
+    }
+    .hero-tag {
+      display: inline-block;
+      font-family: var(--font-heading);
+      font-size: 0.9rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+    .hero-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+    }
+    .hero-subtitle {
+      font-size: 1.25rem;
+      line-height: 1.6;
+      color: var(--text-dark-muted);
+      max-width: 60ch;
+      margin-bottom: 2.25rem;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    /* ==========================================================================
+       KNOPPEN
+       ========================================================================== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.85rem 1.65rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: var(--radius-sm);
+      transition: background-color var(--transition), color var(--transition), border-color var(--transition), transform var(--transition);
+      cursor: pointer;
+    }
+    .btn-primary {
+      background-color: var(--accent);
+      color: #0A110D; /* Maximaal contrast op mintgroen */
+      border: 1px solid var(--accent);
+    }
+    .btn-primary:hover {
+      background-color: var(--accent-hover);
+      border-color: var(--accent-hover);
+      transform: translateY(-2px);
+    }
+    .btn-outline {
+      background-color: transparent;
+      color: var(--text-dark-theme);
+      border: 1px solid var(--border-dark);
+    }
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .btn-outline-dark {
+      background-color: transparent;
+      color: var(--text-light-theme);
+      border: 1px solid var(--border-light);
+    }
+    .btn-outline-dark:hover {
+      border-color: #1A1F26;
+      background-color: rgba(26, 31, 38, 0.05);
+      transform: translateY(-2px);
+    }
+    /* ==========================================================================
+       TIJDLIJN
+       ========================================================================== */
+    .timeline {
+      position: relative;
+      max-width: 800px;
+      padding-left: 2rem;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 8px;
+      bottom: 8px;
+      left: 6px;
+      width: 2px;
+      background-color: var(--border-dark);
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2.75rem;
+    }
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+    .timeline-marker {
+      position: absolute;
+      top: 6px;
+      left: -2rem;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background-color: var(--accent);
+      border: 3px solid var(--bg-dark);
+      box-shadow: 0 0 0 2px rgba(74, 222, 128, 0.3);
+    }
+    .timeline-period {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--accent);
+      margin-bottom: 0.25rem;
+    }
+    .timeline-role {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      color: #FFFFFF;
+      margin-bottom: 0.25rem;
+    }
+    .timeline-company {
+      font-size: 0.95rem;
+      color: var(--text-dark-muted);
+      font-weight: 500;
+    }
+    .timeline-description {
+      margin-top: 0.75rem;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: var(--text-dark-theme);
+      max-width: 65ch;
+    }
+    /* ==========================================================================
+       SKILLS
+       ========================================================================== */
+    .skills-grid {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+    }
+    .skill-card {
+      background-color: var(--bg-light-card);
+      color: var(--text-light-theme);
+      border: 1px solid var(--border-light);
+      padding: 0.75rem 1.4rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+      font-weight: 600;
+      transition: border-color var(--transition), transform var(--transition);
+      cursor: default;
+    }
+    .skill-card:hover {
+      border-color: #10B981;
+      transform: translateY(-2px);
+    }
+    /* ==========================================================================
+       PROJECTEN GRID & KAARTEN
+       ========================================================================== */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    .project-card {
+      display: flex;
+      flex-direction: column;
+      background-color: var(--bg-dark-card);
+      border: 1px solid var(--border-dark);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+      text-align: left;
+    }
+    .project-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    }
+    .project-card-image-wrapper {
+      aspect-ratio: 16 / 9;
+      background-color: #12161C;
+      border-bottom: 1px solid var(--border-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-dark-muted);
+    }
+    .project-card-placeholder-text {
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .project-card-body {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    .project-card-title {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      line-height: 1.3;
+      margin-bottom: 0.75rem;
+      color: #FFFFFF;
+    }
+    .project-card-summary {
+      font-size: 0.95rem;
+      color: var(--text-dark-muted);
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+    .tags-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .tag {
+      background-color: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.25rem 0.6rem;
+      border-radius: var(--radius-sm);
+    }
+    /* ==========================================================================
+       PROJECT DETAIL MODAL (Pop-up venster voor casestudies)
+       ========================================================================== */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(10, 13, 17, 0.88);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+    .modal-overlay.active {
+      display: flex;
+      opacity: 1;
+    }
+    .modal-card {
+      background-color: var(--bg-dark);
+      border: 1px solid var(--border-dark);
+      border-radius: var(--radius-lg);
+      max-width: 800px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 2.5rem;
+      position: relative;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    }
+    .modal-close-btn {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: none;
+      border: none;
+      color: var(--text-dark-muted);
+      font-size: 1.75rem;
+      cursor: pointer;
+      line-height: 1;
+      padding: 0.25rem;
+    }
+    .modal-close-btn:hover {
+      color: var(--accent);
+    }
+    .modal-media-box {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background-color: var(--bg-dark-card);
+      border: 1px dashed var(--border-dark);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 1.75rem 0 2.5rem 0;
+      color: var(--text-dark-muted);
+    }
+    .modal-section {
+      margin-bottom: 2rem;
+    }
+    .modal-section h3 {
+      font-family: var(--font-heading);
+      color: var(--accent);
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+    .modal-section p {
+      color: var(--text-dark-theme);
+      line-height: 1.7;
+    }
+    .modal-section ul {
+      padding-left: 1.5rem;
+      color: var(--text-dark-theme);
+    }
+    .modal-section li {
+      margin-bottom: 0.5rem;
+    }
+    /* ==========================================================================
+       CONTACT & FOOTER
+       ========================================================================== */
+    .contact-container {
+      text-align: center;
+      padding: 2rem 1.5rem;
+    }
+    .contact-title {
+      font-family: var(--font-heading);
+      font-size: 2.75rem;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .contact-subtitle {
+      font-size: 1.2rem;
+      color: var(--text-light-muted);
+      max-width: 50ch;
+      margin: 0 auto 2.5rem auto;
+    }
+    .contact-actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+    }
+    .footer {
+      background-color: var(--bg-dark);
+      border-top: 1px solid var(--border-dark);
+      padding: 2.5rem 0;
+      font-size: 0.9rem;
+      color: var(--text-dark-muted);
+    }
+    .footer-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer strong {
+      color: var(--text-dark-theme);
+    }
+    .footer-right {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .footer-right a {
+      color: var(--text-dark-muted);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+    .footer-right a:hover {
+      color: var(--accent);
+    }
+    /* Animaties bij scrollen */
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    .animate-on-scroll.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .animate-on-scroll {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+    }
+    /* Mobiel menu */
+    @media (max-width: 768px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2rem;
+      }
+      .hero-avatar-wrapper {
+        order: 1;
+      }
+      .hero-content {
+        order: 2;
+      }
+      .hero-avatar, .hero-avatar-fallback {
+        width: 180px;
+        height: 180px;
+      }
+      .hero-actions {
+        justify-content: center;
+      }
+      .nav-toggle {
+        display: block;
+      }
+      .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 75%;
+        height: 100vh;
+        background-color: var(--bg-dark);
+        border-left: 1px solid var(--border-dark);
+        padding: calc(var(--header-height) + 2rem) 2rem;
+        transition: right 0.3s ease-in-out;
+      }
+      .nav-menu.open {
+        right: 0;
+      }
+      .nav-list {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+      }
+      .nav-toggle.open span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+      .nav-toggle.open span:nth-child(2) {
+        opacity: 0;
+      }
+      .nav-toggle.open span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+      }
+      .footer-container {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+</style>
+
+<!-- Sticky Navigatie -->
+<header class="navbar" id="navbar">
+  <div class="container nav-container">
+    <a href="#hero" class="nav-logo" aria-label="Home">Ruben<span>.</span></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu openen" aria-expanded="false" aria-controls="navMenu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <nav id="navMenu" class="nav-menu">
+      <ul class="nav-list">
+        <li><a href="#over-mij" class="nav-link">Over mij</a></li>
+        <li><a href="#ervaring" class="nav-link">Ervaring</a></li>
+        <li><a href="#skills" class="nav-link">Skills</a></li>
+        <li><a href="#projecten" class="nav-link">Projecten</a></li>
+        <li><a href="#contact" class="nav-link nav-link-cta">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- 1. HERO (Donker) -->
+  <section class="section section-dark hero-section" id="hero">
+    <div class="container hero-grid">
+
+      <!-- Profielfoto met automatische initialen 'RV' fallback -->
+      <div class="hero-avatar-wrapper animate-on-scroll">
+        <img
+          src="assets/ruben.jpg"
+          alt="Portretfoto van Ruben Verwiel"
+          class="hero-avatar"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        >
+        <div class="hero-avatar-fallback" aria-hidden="true" style="display:none;">RV</div>
+      </div>
+
+      <div class="hero-content animate-on-scroll">
+        <span class="hero-tag">Commerciële Economie &amp; AI</span>
+        <h1 class="hero-title">Ruben Verwiel</h1>
+        <p class="hero-subtitle">
+          Commerciële Economie &amp; AI. Ik zoek uit hoe slimme technologie commerciële processen sneller maakt — en bouw ze vervolgens zelf.
+        </p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">Neem contact op</a>
+          <a href="assets/cv-ruben-verwiel.pdf" download="CV-Ruben-Verwiel.pdf" class="btn btn-outline">Download mijn cv</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. OVER MIJ (Licht) -->
+  <section class="section section-light" id="over-mij">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <span class="section-label">Achtergrond</span>
+        <h2 class="section-title">Over mij</h2>
+      </div>
+      <div class="text-content animate-on-scroll">
+        <p>
+          Ik ben Ruben Verwiel, 23 jaar en woonachtig in Utrecht. Ik studeer Commerciële Economie aan de Hogeschool Utrecht en volg daarnaast de minor AI — een combinatie die me precies brengt waar ik wil zitten: op het snijvlak van commercie en technologie.
+        </p>
+        <p>
+          Nieuwsgierig is waarschijnlijk het woord dat me het beste omschrijft. Ik wil weten hoe een bedrijf zijn geld verdient, waar het vastloopt en wat er gebeurt als je daar iets slims tegenaan zet. Die nieuwsgierigheid trekt me naar de commerciële kant: klanten begrijpen, het verhaal scherp krijgen en dat vertalen naar leads die daadwerkelijk omzet worden.
+        </p>
+        <p>
+          Wat me onderscheidt is dat ik het niet bij denken laat. In de projecten op deze site bouw ik met AI de tools die commerciële processen versnellen — van leadgeneratie tot opvolging. Ik praat net zo makkelijk met een klant als met een taalmodel, en ik leer het snelst door gewoon te beginnen.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. ERVARING & OPLEIDING (Donker) -->
+  <section class="section section-dark" id="ervaring">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <span class="section-label">Loopbaan</span>
+        <h2 class="section-title">Ervaring &amp; Opleiding</h2>
+      </div>
+      <div class="timeline animate-on-scroll">
+
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <span class="timeline-period">okt 2025 – heden</span>
+            <h3 class="timeline-role">Parttime medewerker</h3>
+            <p class="timeline-company">Wonderwoods · Utrecht</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <span class="timeline-period">sep 2023 – jun 2027</span>
+            <h3 class="timeline-role">Hogeschool Utrecht — Commerciële Economie</h3>
+            <p class="timeline-company">Bacheloropleiding · Inclusief minor AI</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <span class="timeline-period">feb 2023 – jul 2023</span>
+            <h3 class="timeline-role">Stagiair Sales &amp; Marketing</h3>
+            <p class="timeline-company">Poolmanager · Rotterdam</p>
+            <p class="timeline-description">
+              Poolmanager is een softwareplatform voor organisaties met flexibel inzetbaar personeel — planning, poolbeheer, urenregistratie en koppelingen met HR-systemen in één omgeving. Binnen het salesteam richtte ik me op klantrelaties, het versnellen van commerciële processen en leadgeneratie.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <span class="timeline-period">sep 2022 – jun 2023</span>
+            <h3 class="timeline-role">Avans Hogeschool — Propedeuse Economie</h3>
+            <p class="timeline-company">Propedeuse behaald</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. SKILLS & TOOLS (Licht) -->
+  <section class="section section-light" id="skills">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <span class="section-label">Toolkit</span>
+        <h2 class="section-title">Skills &amp; Tools</h2>
+      </div>
+      <ul class="skills-grid animate-on-scroll">
+        <li class="skill-card">Claude</li>
+        <li class="skill-card">Gemini</li>
+        <li class="skill-card">ChatGPT</li>
+        <li class="skill-card">GitHub</li>
+        <li class="skill-card">Vercel</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 5. PROJECTEN (Donker) -->
+  <section class="section section-dark" id="projecten">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <span class="section-label">Werk</span>
+        <h2 class="section-title">Projecten</h2>
+        <p class="section-intro">Waar ik AI inzet om commerciële processen slimmer te maken. Klik op een kaart voor details.</p>
+      </div>
+      <div class="projects-grid animate-on-scroll">
+
+        <!-- Project 1 Kaart -->
+        <div class="project-card" onclick="openModal('modal-1')">
+          <div class="project-card-image-wrapper">
+            <span class="project-card-placeholder-text">Afbeelding volgt</span>
+          </div>
+          <div class="project-card-body">
+            <h3 class="project-card-title">Geautomatiseerde leadgeneratie &amp; verrijking</h3>
+            <p class="project-card-summary">AI-gestuurde scraping en scoring van B2B leads voor doelgerichte outreach.</p>
+            <div class="tags-row">
+              <span class="tag">Claude</span>
+              <span class="tag">Python</span>
+              <span class="tag">GitHub</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 Kaart -->
+        <div class="project-card" onclick="openModal('modal-2')">
+          <div class="project-card-image-wrapper">
+            <span class="project-card-placeholder-text">Afbeelding volgt</span>
+          </div>
+          <div class="project-card-body">
+            <h3 class="project-card-title">Commerciële offerte- en voorstel-assistent</h3>
+            <p class="project-card-summary">LLM-integratie die salesgesprekken vertaalt naar op maat gesneden voorstellen.</p>
+            <div class="tags-row">
+              <span class="tag">Gemini</span>
+              <span class="tag">ChatGPT</span>
+              <span class="tag">Vercel</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3 Kaart -->
+        <div class="project-card" onclick="openModal('modal-3')">
+          <div class="project-card-image-wrapper">
+            <span class="project-card-placeholder-text">Afbeelding volgt</span>
+          </div>
+          <div class="project-card-body">
+            <h3 class="project-card-title">AI Klantenservice &amp; Chattool voor Sales</h3>
+            <p class="project-card-summary">Een interactieve assistent die vragen beantwoordt en koopsignalen detecteert.</p>
+            <div class="tags-row">
+              <span class="tag">Claude API</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">Vercel</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. CONTACT (Licht) -->
+  <section class="section section-light" id="contact">
+    <div class="container contact-container animate-on-scroll">
+      <h2 class="contact-title">Laten we kennismaken</h2>
+      <p class="contact-subtitle">
+        Op zoek naar iemand die commercie en AI combineert? Ik hoor graag van je.
+      </p>
+      <div class="contact-actions">
+        <a href="#" id="mailknop" class="btn btn-primary">Mail mij</a>
+        <a href="https://www.linkedin.com/in/ruben-verwiel-782ab424a" target="_blank" rel="noopener noreferrer" class="btn btn-outline-dark">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- 7. FOOTER (Donker) -->
+<footer class="footer">
+  <div class="container footer-container">
+    <div class="footer-left">
+      <strong>Ruben Verwiel</strong> &bull; Utrecht, Nederland
+    </div>
+    <div class="footer-right">
+      <span>&copy; <span id="currentYear"></span> Alle rechten voorbehouden.</span>
+      <a href="https://www.linkedin.com/in/ruben-verwiel-782ab424a" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+<!-- MODALS VOOR PROJECTDETAILS -->
+<div class="modal-overlay" id="modal-1" onclick="closeOnBackdrop(event, 'modal-1')">
+  <div class="modal-card">
+    <button class="modal-close-btn" onclick="closeModal('modal-1')" aria-label="Sluiten">&times;</button>
+    <h2 style="font-family: var(--font-heading); margin-bottom: 0.5rem; color:#fff;">Geautomatiseerde leadgeneratie &amp; verrijking</h2>
+    <p style="color: var(--text-dark-muted); margin-bottom: 1rem;">Hoe AI-gestuurde scraping het prospectieproces tot 4x versnelt.</p>
+    <div class="tags-row"><span class="tag">Claude</span><span class="tag">Python</span><span class="tag">GitHub</span></div>
+
+    <div class="modal-media-box">Hier komt een screenshot of schema</div>
+
+    <div class="modal-section">
+      <h3>Het probleem</h3>
+      <p>In veel B2B-organisaties besteedt sales te veel tijd aan handmatig zoeken naar contactpersonen en website-analyses, wat de outreach vertraagt.</p>
+    </div>
+    <div class="modal-section">
+      <h3>Mijn aanpak</h3>
+      <p>Ik ontwikkelde een workflow waarin bedrijfsdomeinen automatisch worden geanalyseerd. Via slimme Claude-prompts worden waardeproposities en contactpersonen direct inzichtelijk gemaakt.</p>
+    </div>
+    <div class="modal-section">
+      <h3>Gebruikte tools</h3>
+      <ul>
+        <li><strong>Claude (Anthropic API):</strong> voor ongestructureerde data-extractie.</li>
+        <li><strong>Python:</strong> scraping-logica en datakoppelingen.</li>
+        <li><strong>GitHub:</strong> versiebeheer.</li>
+      </ul>
+    </div>
+    <div class="modal-section">
+      <h3>Resultaat &amp; wat ik ervan leerde</h3>
+      <p>De analysetijd per prospect daalde van 8 minuten naar 30 seconden. Een prompt is pas effectief als de commerciële definitie van een 'goede lead' vooraf messcherp is.</p>
+    </div>
+    <button class="btn btn-primary" onclick="closeModal('modal-1')" style="width: 100%;">Sluit venster</button>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-2" onclick="closeOnBackdrop(event, 'modal-2')">
+  <div class="modal-card">
+    <button class="modal-close-btn" onclick="closeModal('modal-2')" aria-label="Sluiten">&times;</button>
+    <h2 style="font-family: var(--font-heading); margin-bottom: 0.5rem; color:#fff;">Commerciële offerte-assistent</h2>
+    <p style="color: var(--text-dark-muted); margin-bottom: 1rem;">Transformatie van intakegesprekken naar overtuigende offerteteksten.</p>
+    <div class="tags-row"><span class="tag">Gemini</span><span class="tag">ChatGPT</span><span class="tag">Vercel</span></div>
+
+    <div class="modal-media-box">Hier komt een screenshot of schema</div>
+
+    <div class="modal-section">
+      <h3>Het probleem</h3>
+      <p>Wachttijd tussen een intakegesprek en het voorstel is vaak te lang. Saleskopieën zijn vaak generiek en missen specifieke nuances van de klantvraag.</p>
+    </div>
+    <div class="modal-section">
+      <h3>Mijn aanpak</h3>
+      <p>Een intuïtieve webtool waar sales ruwe gespreksnotities invoert. Modellen herstructureren dit razendsnel tot een offerteconcept in de exacte merkstijl.</p>
+    </div>
+    <div class="modal-section">
+      <h3>Gebruikte tools</h3>
+      <ul>
+        <li><strong>Google Gemini:</strong> snelle verwerking van lange gespreksnotities.</li>
+        <li><strong>ChatGPT (OpenAI API):</strong> conversiegerichte Nederlandse copywriting.</li>
+        <li><strong>Vercel:</strong> razendsnelle cloudhosting.</li>
+      </ul>
+    </div>
+    <div class="modal-section">
+      <h3>Resultaat &amp; wat ik ervan leerde</h3>
+      <p>Doorlooptijd per concept ging van 45 naar 5 minuten. Cruciaal was dat sales de volledige controle behoudt en elk veld handmatig kan bijsturen.</p>
+    </div>
+    <button class="btn btn-primary" onclick="closeModal('modal-2')" style="width: 100%;">Sluit venster</button>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-3" onclick="closeOnBackdrop(event, 'modal-3')">
+  <div class="modal-card">
+    <button class="modal-close-btn" onclick="closeModal('modal-3')" aria-label="Sluiten">&times;</button>
+    <h2 style="font-family: var(--font-heading); margin-bottom: 0.5rem; color:#fff;">AI Klantenservice &amp; Chattool voor Sales</h2>
+    <p style="color: var(--text-dark-muted); margin-bottom: 1rem;">Directe interactie en koopsignaaldetectie voor websitebezoekers.</p>
+    <div class="tags-row"><span class="tag">Claude API</span><span class="tag">JavaScript</span><span class="tag">Vercel</span></div>
+
+    <div class="modal-media-box">Hier komt een screenshot of schema</div>
+
+    <div class="modal-section">
+      <h3>Het probleem</h3>
+      <p>Rigide chatbots irriteren bezoekers en bedrijven missen waardevolle leads buiten openingstijden.</p>
+    </div>
+    <div class="modal-section">
+      <h3>Mijn aanpak</h3>
+      <p>Een conversatiebot die productvragen accuraat beantwoordt en bij concrete interesse direct een leadtrigger stuurt naar het verkoopteam.</p>
+    </div>
+    <div class="modal-section">
+      <h3>Gebruikte tools</h3>
+      <ul>
+        <li><strong>Claude API:</strong> empathische, menselijke en feitelijke antwoorden.</li>
+        <li><strong>Vanilla JavaScript:</strong> lichtgewicht widget.</li>
+        <li><strong>Vercel Functions:</strong> veilige afhandeling van webhooks.</li>
+      </ul>
+    </div>
+    <div class="modal-section">
+      <h3>Resultaat &amp; wat ik ervan leerde</h3>
+      <p>Aanzienlijk hogere interactie dan een statisch contactformulier. De grootste winst zat in duidelijke vangrails zodat de bot nooit prijstoezeggingen hallucineert.</p>
+    </div>
+    <button class="btn btn-primary" onclick="closeModal('modal-3')" style="width: 100%;">Sluit venster</button>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // 1. Veilig e-mailadres injecteren (tegen spam-scrapers)
+    const mailBtn = document.getElementById('mailknop');
+    if (mailBtn) {
+      const u = 'rubenverwiel2003';
+      const d = 'gmail.com';
+      mailBtn.href = 'mailto:' + u + '@' + d;
+      mailBtn.textContent = u + '@' + d;
+    }
+
+    // 2. Copyright jaar
+    const yearEl = document.getElementById('currentYear');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+    // 3. Sticky header
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 30) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    }, { passive: true });
+
+    // 4. Mobiel menu toggle
+    const navToggle = document.getElementById('navToggle');
+    const navMenu = document.getElementById('navMenu');
+    if (navToggle && navMenu) {
+      navToggle.addEventListener('click', () => {
+        const open = navMenu.classList.toggle('open');
+        navToggle.classList.toggle('open');
+        navToggle.setAttribute('aria-expanded', open);
+      });
+      navMenu.querySelectorAll('.nav-link').forEach(l => {
+        l.addEventListener('click', () => {
+          navMenu.classList.remove('open');
+          navToggle.classList.remove('open');
+        });
+      });
+    }
+
+    // 5. Fade-in animaties
+    if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+    } else {
+      document.querySelectorAll('.animate-on-scroll').forEach(el => el.classList.add('is-visible'));
+    }
+  });
+
+  // Modal vensters openen en sluiten
+  function openModal(id) {
+    const modal = document.getElementById(id);
+    if (modal) {
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+  function closeModal(id) {
+    const modal = document.getElementById(id);
+    if (modal) {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  }
+  function closeOnBackdrop(e, id) {
+    if (e.target.id === id) {
+      closeModal(id);
+    }
+  }
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.modal-overlay.active').forEach(m => {
+        m.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    }
+  });
+</script>
+
+</body>
+</html>
