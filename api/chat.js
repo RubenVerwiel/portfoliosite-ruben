@@ -26,6 +26,14 @@ async function saveMessages(visitorId, rows) {
   });
 }
 
+async function deleteHistory(visitorId) {
+  const url = process.env.SUPABASE_URL;
+  await fetch(
+    `${url}/rest/v1/chat_messages?visitor_id=eq.${encodeURIComponent(visitorId)}`,
+    { method: 'DELETE', headers: supabaseHeaders() }
+  );
+}
+
 export default async function handler(req, res) {
   const hasSupabase = process.env.SUPABASE_URL && process.env.SUPABASE_PUBLISHABLE_KEY;
 
@@ -37,6 +45,15 @@ export default async function handler(req, res) {
     }
     const messages = await loadHistory(visitorId);
     res.status(200).json({ messages });
+    return;
+  }
+
+  if (req.method === 'DELETE') {
+    const visitorId = req.query?.visitorId;
+    if (visitorId && hasSupabase) {
+      await deleteHistory(visitorId);
+    }
+    res.status(200).json({ ok: true });
     return;
   }
 

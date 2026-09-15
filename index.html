@@ -727,6 +727,48 @@
       font-family: var(--font-heading);
       font-weight: 700;
       color: var(--text-dark-theme);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+    .chat-clear-btn {
+      background: none;
+      border: none;
+      color: var(--text-dark-muted);
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 0.75rem;
+      cursor: pointer;
+      padding: 0.25rem 0.4rem;
+      text-decoration: underline;
+    }
+    .chat-clear-btn:hover {
+      color: var(--text-dark-theme);
+    }
+    .chat-msg.typing {
+      display: flex;
+      gap: 0.25rem;
+      align-items: center;
+      padding: 0.65rem 0.75rem;
+    }
+    .chat-msg.typing span {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--text-dark-muted);
+      animation: chat-typing-bounce 1.2s infinite ease-in-out;
+    }
+    .chat-msg.typing span:nth-child(2) { animation-delay: 0.15s; }
+    .chat-msg.typing span:nth-child(3) { animation-delay: 0.3s; }
+    @keyframes chat-typing-bounce {
+      0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
+      30% { transform: translateY(-3px); opacity: 1; }
+    }
+    .chat-panel-form button:disabled,
+    .chat-panel-form input:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
     }
     .chat-panel-messages {
       flex: 1;
@@ -1112,11 +1154,14 @@
 
 <button class="chat-toggle" id="chatToggle" aria-label="Open chat" aria-expanded="false" aria-controls="chatPanel">💬</button>
 <div class="chat-panel" id="chatPanel">
-  <div class="chat-panel-header">Stel een vraag</div>
+  <div class="chat-panel-header">
+    <span>Stel een vraag</span>
+    <button type="button" class="chat-clear-btn" id="chatClear" aria-label="Gesprek wissen">Wis gesprek</button>
+  </div>
   <div class="chat-panel-messages" id="chatMessages"></div>
   <form class="chat-panel-form" id="chatForm">
     <input type="text" id="chatInput" placeholder="Typ je vraag..." autocomplete="off" required>
-    <button type="submit">Stuur</button>
+    <button type="submit" id="chatSend">Stuur</button>
   </form>
 </div>
 
@@ -1213,6 +1258,8 @@
     const panel = document.getElementById('chatPanel');
     const form = document.getElementById('chatForm');
     const input = document.getElementById('chatInput');
+    const sendBtn = document.getElementById('chatSend');
+    const clearBtn = document.getElementById('chatClear');
     const messages = document.getElementById('chatMessages');
     if (!toggle || !panel || !form) return;
 
@@ -1237,6 +1284,20 @@
       el.textContent = text;
       messages.appendChild(el);
       messages.scrollTop = messages.scrollHeight;
+    }
+
+    function showTyping() {
+      const el = document.createElement('div');
+      el.className = 'chat-msg bot typing';
+      el.id = 'chatTypingIndicator';
+      el.innerHTML = '<span></span><span></span><span></span>';
+      messages.appendChild(el);
+      messages.scrollTop = messages.scrollHeight;
+    }
+
+    function hideTyping() {
+      const el = document.getElementById('chatTypingIndicator');
+      if (el) el.remove();
     }
 
     async function loadHistory() {
@@ -1264,6 +1325,8 @@
       addMessage('user', message);
       input.value = '';
       input.disabled = true;
+      if (sendBtn) sendBtn.disabled = true;
+      showTyping();
 
       try {
         const response = await fetch('/api/chat', {
@@ -1272,18 +1335,35 @@
           body: JSON.stringify({ message, visitorId }),
         });
         const data = await response.json();
+        hideTyping();
         if (!response.ok) {
           addMessage('bot', data.error || 'Er ging iets mis, probeer het later opnieuw.');
         } else {
           addMessage('bot', data.reply || '...');
         }
       } catch (err) {
+        hideTyping();
         addMessage('bot', 'Kan geen verbinding maken met de chatservice.');
       } finally {
         input.disabled = false;
+        if (sendBtn) sendBtn.disabled = false;
         input.focus();
       }
     });
+
+    if (clearBtn) {
+      clearBtn.addEventListener('click', async () => {
+        if (!confirm('Weet je zeker dat je het gesprek wilt wissen?')) return;
+        messages.innerHTML = '';
+        if (visitorId) {
+          try {
+            await fetch('/api/chat?visitorId=' + encodeURIComponent(visitorId), { method: 'DELETE' });
+          } catch (err) {
+            // Wissen op de server mislukt: lokaal is het scherm alvast leeg.
+          }
+        }
+      });
+    }
   })();
 </script>
 
