@@ -5,6 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ruben Verwiel — Commerciële Economie &amp; AI</title>
 <meta name="description" content="Portfolio van Ruben Verwiel. Commerciële Economie & AI — slimme technologie inzetten om commerciële processen te versnellen.">
+<script>
+  (function () {
+    try {
+      var stored = localStorage.getItem('theme');
+      var theme = stored || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (err) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
@@ -145,7 +156,7 @@
       font-family: var(--font-heading);
       font-size: 1.35rem;
       font-weight: 700;
-      color: #FFFFFF;
+      color: var(--text-dark-theme);
       text-decoration: none;
       letter-spacing: -0.02em;
     }
@@ -194,7 +205,7 @@
       width: 24px;
       height: 2px;
       margin: 5px 0;
-      background-color: #FFFFFF;
+      background-color: var(--text-dark-theme);
       transition: transform var(--transition), opacity var(--transition);
     }
     /* ==========================================================================
@@ -358,7 +369,7 @@
     .timeline-role {
       font-family: var(--font-heading);
       font-size: 1.25rem;
-      color: #FFFFFF;
+      color: var(--text-dark-theme);
       margin-bottom: 0.25rem;
     }
     .timeline-company {
@@ -447,7 +458,7 @@
       font-size: 1.25rem;
       line-height: 1.3;
       margin-bottom: 0.75rem;
-      color: #FFFFFF;
+      color: var(--text-dark-theme);
     }
     .project-card-summary {
       font-size: 0.95rem;
@@ -819,26 +830,78 @@
       cursor: pointer;
       font-weight: 600;
     }
+    /* ==========================================================================
+       LICHT/DONKER THEMA-TOGGLE
+       ========================================================================== */
+    body,
+    .section-dark,
+    .navbar.scrolled,
+    .chat-panel {
+      transition: background-color var(--transition), color var(--transition), border-color var(--transition);
+    }
+    :root[data-theme="light"] {
+      --bg-dark: #F7F8F9;
+      --bg-dark-card: #FFFFFF;
+      --text-dark-theme: #1A1F26;
+      --text-dark-muted: #536071;
+      --border-dark: #E2E8F0;
+    }
+    :root[data-theme="light"] .navbar.scrolled {
+      background-color: rgba(247, 248, 249, 0.92);
+    }
+    :root[data-theme="light"] .project-card-image-wrapper {
+      background-color: #F7F8F9;
+    }
+    :root[data-theme="light"] .chat-msg.bot {
+      background-color: rgba(26, 31, 38, 0.05);
+    }
+    .nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .theme-toggle {
+      background: none;
+      border: 1px solid var(--border-dark);
+      border-radius: 50%;
+      width: 38px;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: border-color var(--transition), transform var(--transition);
+    }
+    .theme-toggle:hover {
+      transform: scale(1.08);
+      border-color: var(--accent);
+    }
 </style>
 
 <!-- Sticky Navigatie -->
 <header class="navbar" id="navbar">
   <div class="container nav-container">
     <a href="#hero" class="nav-logo" aria-label="Home">Ruben<span>.</span></a>
-    <button class="nav-toggle" id="navToggle" aria-label="Menu openen" aria-expanded="false" aria-controls="navMenu">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-    <nav id="navMenu" class="nav-menu">
-      <ul class="nav-list">
-        <li><a href="#over-mij" class="nav-link">Over mij</a></li>
-        <li><a href="#ervaring" class="nav-link">Ervaring</a></li>
-        <li><a href="#skills" class="nav-link">Skills</a></li>
-        <li><a href="#projecten" class="nav-link">Projecten</a></li>
-        <li><a href="#contact" class="nav-link nav-link-cta">Contact</a></li>
-      </ul>
-    </nav>
+    <div class="nav-controls">
+      <button class="theme-toggle" id="themeToggle" aria-label="Wissel tussen licht en donker thema">
+        <span id="themeToggleIcon" aria-hidden="true">🌙</span>
+      </button>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu openen" aria-expanded="false" aria-controls="navMenu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav id="navMenu" class="nav-menu">
+        <ul class="nav-list">
+          <li><a href="#over-mij" class="nav-link">Over mij</a></li>
+          <li><a href="#ervaring" class="nav-link">Ervaring</a></li>
+          <li><a href="#skills" class="nav-link">Skills</a></li>
+          <li><a href="#projecten" class="nav-link">Projecten</a></li>
+          <li><a href="#contact" class="nav-link nav-link-cta">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
   </div>
 </header>
 
@@ -978,12 +1041,12 @@
             <span class="project-card-placeholder-text">Afbeelding volgt</span>
           </div>
           <div class="project-card-body">
-            <h3 class="project-card-title">Geautomatiseerde leadgeneratie &amp; verrijking</h3>
-            <p class="project-card-summary">AI-gestuurde scraping en scoring van B2B leads voor doelgerichte outreach.</p>
+            <h3 class="project-card-title">Deze portfoliosite</h3>
+            <p class="project-card-summary">Deze website zelf, inclusief AI-chatbot en database, gebouwd in Visual Studio Code met hulp van een Claude-plug-in.</p>
             <div class="tags-row">
-              <span class="tag">Claude</span>
-              <span class="tag">Python</span>
-              <span class="tag">GitHub</span>
+              <span class="tag">Claude Code</span>
+              <span class="tag">Gemini API</span>
+              <span class="tag">Supabase</span>
             </div>
           </div>
         </div>
@@ -994,28 +1057,12 @@
             <span class="project-card-placeholder-text">Afbeelding volgt</span>
           </div>
           <div class="project-card-body">
-            <h3 class="project-card-title">Commerciële offerte- en voorstel-assistent</h3>
-            <p class="project-card-summary">LLM-integratie die salesgesprekken vertaalt naar op maat gesneden voorstellen.</p>
+            <h3 class="project-card-title">AI-agent voor leadgeneratie <em style="font-style: normal; color: var(--accent); font-size: 0.85em;">(in ontwikkeling)</em></h3>
+            <p class="project-card-summary">Een agent die ik nu samen met Claude bouw in Visual Studio Code, gericht op het vinden en kwalificeren van leads.</p>
             <div class="tags-row">
-              <span class="tag">Gemini</span>
-              <span class="tag">ChatGPT</span>
-              <span class="tag">Vercel</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 3 Kaart -->
-        <div class="project-card" onclick="openModal('modal-3')">
-          <div class="project-card-image-wrapper">
-            <span class="project-card-placeholder-text">Afbeelding volgt</span>
-          </div>
-          <div class="project-card-body">
-            <h3 class="project-card-title">AI Klantenservice &amp; Chattool voor Sales</h3>
-            <p class="project-card-summary">Een interactieve assistent die vragen beantwoordt en koopsignalen detecteert.</p>
-            <div class="tags-row">
-              <span class="tag">Claude API</span>
-              <span class="tag">JavaScript</span>
-              <span class="tag">Vercel</span>
+              <span class="tag">Claude Code</span>
+              <span class="tag">AI-agent</span>
+              <span class="tag">Leadgeneratie</span>
             </div>
           </div>
         </div>
@@ -1056,31 +1103,32 @@
 <div class="modal-overlay" id="modal-1" onclick="closeOnBackdrop(event, 'modal-1')">
   <div class="modal-card">
     <button class="modal-close-btn" onclick="closeModal('modal-1')" aria-label="Sluiten">&times;</button>
-    <h2 style="font-family: var(--font-heading); margin-bottom: 0.5rem; color:#fff;">Geautomatiseerde leadgeneratie &amp; verrijking</h2>
-    <p style="color: var(--text-dark-muted); margin-bottom: 1rem;">Hoe AI-gestuurde scraping het prospectieproces tot 4x versnelt.</p>
-    <div class="tags-row"><span class="tag">Claude</span><span class="tag">Python</span><span class="tag">GitHub</span></div>
+    <h2 style="font-family: var(--font-heading); margin-bottom: 0.5rem; color:var(--text-dark-theme);">Deze portfoliosite</h2>
+    <p style="color: var(--text-dark-muted); margin-bottom: 1rem;">Mijn eigen portfolio, van kleurenschema tot AI-chatbot, zelf gebouwd en live gezet.</p>
+    <div class="tags-row"><span class="tag">Claude Code</span><span class="tag">Gemini API</span><span class="tag">Supabase</span><span class="tag">Vercel</span></div>
 
     <div class="modal-media-box">Hier komt een screenshot of schema</div>
 
     <div class="modal-section">
       <h3>Het probleem</h3>
-      <p>In veel B2B-organisaties besteedt sales te veel tijd aan handmatig zoeken naar contactpersonen en website-analyses, wat de outreach vertraagt.</p>
+      <p>Een portfolio moet niet alleen vertellen dat ik AI en commercie combineer, maar het ook laten zien — een statische pagina alleen doet dat onvoldoende.</p>
     </div>
     <div class="modal-section">
       <h3>Mijn aanpak</h3>
-      <p>Ik ontwikkelde een workflow waarin bedrijfsdomeinen automatisch worden geanalyseerd. Via slimme Claude-prompts worden waardeproposities en contactpersonen direct inzichtelijk gemaakt.</p>
+      <p>Deze site heb ik zelf gebouwd en doorontwikkeld in Visual Studio Code, geholpen door een plug-in van Claude. Denk aan het thema, de AI-chatwidget die vragen beantwoordt, en een database die gesprekken onthoudt zodra een bezoeker terugkomt.</p>
     </div>
     <div class="modal-section">
       <h3>Gebruikte tools</h3>
       <ul>
-        <li><strong>Claude (Anthropic API):</strong> voor ongestructureerde data-extractie.</li>
-        <li><strong>Python:</strong> scraping-logica en datakoppelingen.</li>
-        <li><strong>GitHub:</strong> versiebeheer.</li>
+        <li><strong>Visual Studio Code + Claude-plug-in:</strong> ontwikkelomgeving en AI-hulp bij het bouwen.</li>
+        <li><strong>Gemini API:</strong> de AI-chatbot op de site.</li>
+        <li><strong>Supabase:</strong> database om gesprekken per bezoeker te bewaren.</li>
+        <li><strong>Vercel:</strong> hosting en live-omgeving.</li>
       </ul>
     </div>
     <div class="modal-section">
       <h3>Resultaat &amp; wat ik ervan leerde</h3>
-      <p>De analysetijd per prospect daalde van 8 minuten naar 30 seconden. Een prompt is pas effectief als de commerciële definitie van een 'goede lead' vooraf messcherp is.</p>
+      <p>Een site die niet alleen vertelt wat ik kan, maar het ook toont — en die ik zelf blijf uitbreiden naarmate ik meer leer over het bouwen met AI.</p>
     </div>
     <button class="btn btn-primary" onclick="closeModal('modal-1')" style="width: 100%;">Sluit venster</button>
   </div>
@@ -1089,66 +1137,31 @@
 <div class="modal-overlay" id="modal-2" onclick="closeOnBackdrop(event, 'modal-2')">
   <div class="modal-card">
     <button class="modal-close-btn" onclick="closeModal('modal-2')" aria-label="Sluiten">&times;</button>
-    <h2 style="font-family: var(--font-heading); margin-bottom: 0.5rem; color:#fff;">Commerciële offerte-assistent</h2>
-    <p style="color: var(--text-dark-muted); margin-bottom: 1rem;">Transformatie van intakegesprekken naar overtuigende offerteteksten.</p>
-    <div class="tags-row"><span class="tag">Gemini</span><span class="tag">ChatGPT</span><span class="tag">Vercel</span></div>
+    <h2 style="font-family: var(--font-heading); margin-bottom: 0.5rem; color:var(--text-dark-theme);">AI-agent voor leadgeneratie</h2>
+    <p style="color: var(--text-dark-muted); margin-bottom: 1rem;">In ontwikkeling — een agent die leads vindt en kwalificeert.</p>
+    <div class="tags-row"><span class="tag">Claude Code</span><span class="tag">AI-agent</span><span class="tag">Leadgeneratie</span></div>
 
     <div class="modal-media-box">Hier komt een screenshot of schema</div>
 
     <div class="modal-section">
       <h3>Het probleem</h3>
-      <p>Wachttijd tussen een intakegesprek en het voorstel is vaak te lang. Saleskopieën zijn vaak generiek en missen specifieke nuances van de klantvraag.</p>
+      <p>Leads handmatig zoeken en beoordelen kost veel tijd die beter aan het daadwerkelijke verkoopgesprek besteed kan worden.</p>
     </div>
     <div class="modal-section">
       <h3>Mijn aanpak</h3>
-      <p>Een intuïtieve webtool waar sales ruwe gespreksnotities invoert. Modellen herstructureren dit razendsnel tot een offerteconcept in de exacte merkstijl.</p>
+      <p>Samen met Claude bouw ik in Visual Studio Code een AI-agent die dit proces automatiseert: leads vinden, beoordelen en klaarzetten voor opvolging.</p>
     </div>
     <div class="modal-section">
       <h3>Gebruikte tools</h3>
       <ul>
-        <li><strong>Google Gemini:</strong> snelle verwerking van lange gespreksnotities.</li>
-        <li><strong>ChatGPT (OpenAI API):</strong> conversiegerichte Nederlandse copywriting.</li>
-        <li><strong>Vercel:</strong> razendsnelle cloudhosting.</li>
+        <li><strong>Visual Studio Code + Claude Code:</strong> ontwikkelomgeving en AI-hulp bij het bouwen van de agent.</li>
       </ul>
     </div>
     <div class="modal-section">
-      <h3>Resultaat &amp; wat ik ervan leerde</h3>
-      <p>Doorlooptijd per concept ging van 45 naar 5 minuten. Cruciaal was dat sales de volledige controle behoudt en elk veld handmatig kan bijsturen.</p>
+      <h3>Status</h3>
+      <p>Dit project is nog in ontwikkeling. Zodra het af is, deel ik hier de resultaten.</p>
     </div>
     <button class="btn btn-primary" onclick="closeModal('modal-2')" style="width: 100%;">Sluit venster</button>
-  </div>
-</div>
-
-<div class="modal-overlay" id="modal-3" onclick="closeOnBackdrop(event, 'modal-3')">
-  <div class="modal-card">
-    <button class="modal-close-btn" onclick="closeModal('modal-3')" aria-label="Sluiten">&times;</button>
-    <h2 style="font-family: var(--font-heading); margin-bottom: 0.5rem; color:#fff;">AI Klantenservice &amp; Chattool voor Sales</h2>
-    <p style="color: var(--text-dark-muted); margin-bottom: 1rem;">Directe interactie en koopsignaaldetectie voor websitebezoekers.</p>
-    <div class="tags-row"><span class="tag">Claude API</span><span class="tag">JavaScript</span><span class="tag">Vercel</span></div>
-
-    <div class="modal-media-box">Hier komt een screenshot of schema</div>
-
-    <div class="modal-section">
-      <h3>Het probleem</h3>
-      <p>Rigide chatbots irriteren bezoekers en bedrijven missen waardevolle leads buiten openingstijden.</p>
-    </div>
-    <div class="modal-section">
-      <h3>Mijn aanpak</h3>
-      <p>Een conversatiebot die productvragen accuraat beantwoordt en bij concrete interesse direct een leadtrigger stuurt naar het verkoopteam.</p>
-    </div>
-    <div class="modal-section">
-      <h3>Gebruikte tools</h3>
-      <ul>
-        <li><strong>Claude API:</strong> empathische, menselijke en feitelijke antwoorden.</li>
-        <li><strong>Vanilla JavaScript:</strong> lichtgewicht widget.</li>
-        <li><strong>Vercel Functions:</strong> veilige afhandeling van webhooks.</li>
-      </ul>
-    </div>
-    <div class="modal-section">
-      <h3>Resultaat &amp; wat ik ervan leerde</h3>
-      <p>Aanzienlijk hogere interactie dan een statisch contactformulier. De grootste winst zat in duidelijke vangrails zodat de bot nooit prijstoezeggingen hallucineert.</p>
-    </div>
-    <button class="btn btn-primary" onclick="closeModal('modal-3')" style="width: 100%;">Sluit venster</button>
   </div>
 </div>
 
@@ -1167,6 +1180,25 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
+    // 0. Licht/donker thema-toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const themeToggleIcon = document.getElementById('themeToggleIcon');
+    function updateThemeIcon() {
+      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      if (themeToggleIcon) themeToggleIcon.textContent = isLight ? '☀️' : '🌙';
+      if (themeToggle) themeToggle.setAttribute('aria-label', isLight ? 'Zet donker thema aan' : 'Zet licht thema aan');
+    }
+    updateThemeIcon();
+    if (themeToggle) {
+      themeToggle.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+        const next = current === 'light' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', next);
+        updateThemeIcon();
+        try { localStorage.setItem('theme', next); } catch (err) {}
+      });
+    }
+
     // 1. Veilig e-mailadres injecteren (tegen spam-scrapers)
     const mailBtn = document.getElementById('mailknop');
     if (mailBtn) {
