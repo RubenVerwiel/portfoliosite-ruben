@@ -1,4 +1,4 @@
 Zet hier neer:
 
-- `ruben.jpg` — profielfoto (vierkant, minimaal 500x500)
+- `ruben.png` — profielfoto
 - `cv-ruben-verwiel.pdf` — cv voor de downloadknop
