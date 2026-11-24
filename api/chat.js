@@ -1,3 +1,7 @@
+import { buildSystemPrompt } from './_knowledge.js';
+
+const SYSTEM_PROMPT = buildSystemPrompt();
+
 function supabaseHeaders() {
   const key = process.env.SUPABASE_PUBLISHABLE_KEY;
   return {
@@ -88,7 +92,10 @@ export default async function handler(req, res) {
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ contents }),
+        body: JSON.stringify({
+          systemInstruction: { parts: [{ text: SYSTEM_PROMPT }] },
+          contents,
+        }),
       }
     );
 

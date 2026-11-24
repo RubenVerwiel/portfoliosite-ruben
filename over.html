@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Over mij — Ruben Verwiel</title>
+<meta name="description" content="Wie Ruben Verwiel is: Commerciële Economie, minor AI, ervaring en skills.">
+<meta name="theme-color" content="#0B0E11">
+<script>
+  (function () {
+    var d = document.documentElement;
+    d.classList.add('js');
+    try {
+      var s = localStorage.getItem('theme');
+      d.dataset.theme = s || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    } catch (e) { d.dataset.theme = 'dark'; }
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) d.classList.add('no-anim');
+    setTimeout(function () { if (!window.__fx) d.classList.add('no-anim'); }, 3500);
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js"></script>
+<script defer src="js/data.js"></script>
+<script defer src="js/main.js"></script>
+<script defer src="js/chat.js"></script>
+<script defer src="js/effects.js"></script>
+</head>
+<body data-page="over">
+<main id="main">
+  <section class="page-hero">
+    <div class="glow" aria-hidden="true"></div>
+    <div class="container">
+      <span class="eyebrow" data-reveal data-reveal-intro>03 — Over mij</span>
+      <h1 class="display" data-split data-split-intro>Over mij</h1>
+      <p class="lead" data-reveal data-reveal-intro>Commerciële Economie, de minor AI en een flinke dosis nieuwsgierigheid.</p>
+    </div>
+  </section>
+  <section class="section" style="padding-top:0">
+    <div class="container about-grid">
+      <figure class="about-photo" data-reveal>
+        <img src="assets/ruben.png" alt="Portret van Ruben Verwiel" data-parallax="-8">
+        <figcaption><span>Ruben Verwiel</span><span class="muted">Utrecht</span></figcaption>
+      </figure>
+      <div class="about-text">
+        <p class="statement" data-scroll-reveal>Ik praat net zo makkelijk met een klant als met een taalmodel.</p>
+        <p data-reveal>Ik ben <strong>Ruben Verwiel, 23 jaar, oorspronkelijk uit Breda en inmiddels woonachtig in Utrecht.</strong> Ik studeer Commerciële Economie aan de Hogeschool Utrecht en volg daarnaast de minor AI. Die combinatie brengt me precies waar ik wil zitten: op het snijvlak van commercie en technologie.</p>
+        <p data-reveal><strong>Nieuwsgierig</strong> is waarschijnlijk het woord dat me het beste omschrijft. Ik wil weten hoe een bedrijf zijn geld verdient, waar het vastloopt en wat er gebeurt als je daar iets slims tegenaan zet. Die nieuwsgierigheid trekt me naar de commerciële kant: klanten begrijpen, het verhaal scherp krijgen en dat vertalen naar leads die daadwerkelijk omzet worden.</p>
+        <p data-reveal>Wat me onderscheidt is dat <strong>ik het niet bij denken laat.</strong> In de projecten op deze site bouw ik met AI de tools die commerciële processen versnellen, van leadgeneratie tot opvolging. Ik leer het snelst door gewoon te beginnen.</p>
+        <div class="hero-actions" data-reveal>
+          <a href="#" class="btn btn-primary" data-cv data-magnet>Download mijn cv <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a href="werk.html" class="btn btn-ghost" data-magnet>Bekijk mijn werk</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow" data-reveal>Wat mij drijft</span>
+        <h2 class="h2" data-split>Drie dingen die altijd terugkomen.</h2>
+      </div>
+      <div class="values">
+        <div class="value" data-reveal data-tilt data-spotlight><span class="num">01</span><h3 class="h3">Nieuwsgierig</h3><p>Weten hoe een bedrijf geld verdient, waar het vastloopt en wat er gebeurt als je er iets slims tegenaan zet.</p></div>
+        <div class="value" data-reveal data-tilt data-spotlight><span class="num">02</span><h3 class="h3">Doen</h3><p>Niet bij denken laten. Ik leer het snelst door te beginnen en te bouwen.</p></div>
+        <div class="value" data-reveal data-tilt data-spotlight><span class="num">03</span><h3 class="h3">Commercie × tech</h3><p>Klanten begrijpen en dat vertalen naar tools die commerciële processen sneller maken.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow" data-reveal>Loopbaan</span>
+        <h2 class="h2" data-split>Ervaring &amp; opleiding</h2>
+      </div>
+      <div class="timeline" id="timeline"></div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow" data-reveal>Toolkit</span>
+        <h2 class="h2" data-split>Skills &amp; tools</h2>
+      </div>
+    </div>
+    <div style="display:grid;gap:1rem" data-reveal>
+      <div class="loop" data-loop></div>
+      <div class="loop reverse" data-loop></div>
+    </div>
+  </section>
+  <section class="cta">
+    <div class="cta-orb" aria-hidden="true"></div>
+    <div class="container">
+      <span class="eyebrow" data-reveal>Contact</span>
+      <h2 class="display shiny" data-reveal>Laten we kennismaken.</h2>
+      <p class="lead" style="margin:0 auto 2.2rem" data-reveal>Op zoek naar iemand die commercie en AI combineert? Ik hoor graag van je.</p>
+      <div class="actions" data-reveal><a href="#" class="btn btn-primary" data-mail data-mail-show data-magnet>Mail mij <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a href="https://www.linkedin.com/in/ruben-verwiel-782ab424a" target="_blank" rel="noopener" class="btn btn-ghost" data-magnet>LinkedIn</a></div>
+    </div>
+  </section>
+</main>
+</body>
+</html>

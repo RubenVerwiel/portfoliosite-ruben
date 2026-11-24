@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Minor-reis — Ruben Verwiel</title>
+<meta name="description" content="De minor AI van Ruben Verwiel: verwachting, tussenstand en resultaat.">
+<meta name="theme-color" content="#0B0E11">
+<script>
+  (function () {
+    var d = document.documentElement;
+    d.classList.add('js');
+    try {
+      var s = localStorage.getItem('theme');
+      d.dataset.theme = s || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    } catch (e) { d.dataset.theme = 'dark'; }
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) d.classList.add('no-anim');
+    setTimeout(function () { if (!window.__fx) d.classList.add('no-anim'); }, 3500);
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js"></script>
+<script defer src="js/data.js"></script>
+<script defer src="js/main.js"></script>
+<script defer src="js/chat.js"></script>
+<script defer src="js/effects.js"></script>
+</head>
+<body data-page="minor">
+<main id="main">
+  <section class="page-hero">
+    <div class="glow" aria-hidden="true"></div>
+    <div class="container">
+      <span class="eyebrow" data-reveal data-reveal-intro>04 — Minor AI</span>
+      <h1 class="display" data-split data-split-intro>Minor-reis</h1>
+      <p class="lead" data-reveal data-reveal-intro>Hoe ik de minor AI beleef: wat ik verwachtte aan het begin, waar ik halverwege sta en wat ik aan het eind heb bereikt.</p>
+    </div>
+  </section>
+  <section class="journey" aria-label="De drie fases van de minor">
+    <div class="journey-pin">
+      <div class="container">
+        <div class="journey-steps" id="journeySteps" aria-hidden="true"></div>
+        <div class="journey-bar" aria-hidden="true"><div class="journey-bar-fill"></div></div>
+      </div>
+      <div class="journey-track" id="journeyTrack"></div>
+    </div>
+  </section>
+  <section class="cta">
+    <div class="cta-orb" aria-hidden="true"></div>
+    <div class="container">
+      <span class="eyebrow" data-reveal>Volgende stap</span>
+      <h2 class="display shiny" data-reveal>En daarna?</h2>
+      <p class="lead" style="margin:0 auto 2.2rem" data-reveal>Wat ik leer in de minor bepaalt waar ik naartoe wil.</p>
+      <div class="actions" data-reveal><a href="toekomst.html" class="btn btn-primary" data-magnet>Bekijk mijn toekomst <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a href="ideeen.html" class="btn btn-ghost" data-magnet>Mijn ideeën</a></div>
+    </div>
+  </section>
+</main>
+</body>
+</html>

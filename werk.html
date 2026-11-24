@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Werk — Ruben Verwiel</title>
+<meta name="description" content="Projecten en opdrachten van Ruben Verwiel.">
+<meta name="theme-color" content="#0B0E11">
+<script>
+  (function () {
+    var d = document.documentElement;
+    d.classList.add('js');
+    try {
+      var s = localStorage.getItem('theme');
+      d.dataset.theme = s || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    } catch (e) { d.dataset.theme = 'dark'; }
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) d.classList.add('no-anim');
+    setTimeout(function () { if (!window.__fx) d.classList.add('no-anim'); }, 3500);
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js"></script>
+<script defer src="js/data.js"></script>
+<script defer src="js/main.js"></script>
+<script defer src="js/chat.js"></script>
+<script defer src="js/effects.js"></script>
+</head>
+<body data-page="werk">
+<main id="main">
+  <section class="page-hero">
+    <div class="glow" aria-hidden="true"></div>
+    <div class="container">
+      <span class="eyebrow" data-reveal data-reveal-intro>02 — Werk</span>
+      <h1 class="display" data-split data-split-intro>Mijn werk</h1>
+      <p class="lead" data-reveal data-reveal-intro>Alles wat ik heb gemaakt: projecten, opdrachten en experimenten. Klik op een kaart voor het verhaal erachter, de tools en de links.</p>
+    </div>
+  </section>
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      <div class="filters" id="workFilters" data-reveal role="toolbar" aria-label="Filter werk"></div>
+      <div class="work-grid" id="workGrid"></div>
+    </div>
+  </section>
+  <section class="cta">
+    <div class="cta-orb" aria-hidden="true"></div>
+    <div class="container">
+      <span class="eyebrow" data-reveal>Samenwerken</span>
+      <h2 class="display shiny" data-reveal>Iets samen bouwen?</h2>
+      <p class="lead" style="margin:0 auto 2.2rem" data-reveal>Heb je een vraag over een project of een idee? Stuur me een bericht.</p>
+      <div class="actions" data-reveal><a href="#" class="btn btn-primary" data-mail data-mail-show data-magnet>Mail mij <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a href="https://www.linkedin.com/in/ruben-verwiel-782ab424a" target="_blank" rel="noopener" class="btn btn-ghost" data-magnet>LinkedIn</a></div>
+    </div>
+  </section>
+</main>
+</body>
+</html>
