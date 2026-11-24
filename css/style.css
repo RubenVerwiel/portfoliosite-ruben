@@ -5,14 +5,14 @@
 
 /* ---------- Tokens ---------- */
 :root {
-  --bg: #0B0E11;
-  --bg-2: #10151A;
-  --surface: #141A20;
-  --surface-2: #1B232B;
+  --bg: #161B21;
+  --bg-2: #1B2128;
+  --surface: #20272F;
+  --surface-2: #29323C;
   --text: #ECEFF1;
   --muted: #9AA6B2;
-  --faint: #5F6B77;
-  --line: rgba(255, 255, 255, 0.08);
+  --faint: #6B7784;
+  --line: rgba(255, 255, 255, 0.09);
   --line-strong: rgba(255, 255, 255, 0.16);
   --accent: #4ADE80;
   --accent-2: #2DD4BF;
@@ -20,7 +20,7 @@
   --accent-text: #4ADE80;
   --accent-ink: #06110A;
   --accent-soft: rgba(74, 222, 128, 0.12);
-  --glass: rgba(16, 21, 26, 0.62);
+  --glass: rgba(27, 33, 40, 0.65);
   --shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.7);
 
   --font-display: 'Space Grotesk', system-ui, -apple-system, sans-serif;
@@ -216,16 +216,16 @@ a:focus-visible, button:focus-visible, input:focus-visible, [tabindex]:focus-vis
 .cursor { position: fixed; inset: 0; pointer-events: none; z-index: 3000; display: none; }
 .has-cursor .cursor { display: block; }
 .cursor-dot, .cursor-ring { position: fixed; top: 0; left: 0; border-radius: 50%; transform: translate(-50%, -50%); }
-.cursor-dot { width: 6px; height: 6px; background: var(--accent); }
+.cursor-dot { width: 5px; height: 5px; background: var(--accent); }
 .cursor-ring {
-  width: 36px; height: 36px; border: 1px solid var(--accent);
+  width: 24px; height: 24px; border: 1px solid var(--accent);
   opacity: .6;
   transition: width .35s var(--ease), height .35s var(--ease), background-color .35s var(--ease), opacity .35s;
   display: grid; place-items: center;
   font-family: var(--font-mono); font-size: .62rem; letter-spacing: .1em; text-transform: uppercase; color: var(--accent-ink);
 }
-.cursor-ring.hover { width: 64px; height: 64px; background: rgba(74, 222, 128, .12); opacity: 1; }
-.cursor-ring.label { width: 84px; height: 84px; background: var(--accent); opacity: 1; }
+.cursor-ring.hover { width: 44px; height: 44px; background: rgba(74, 222, 128, .12); opacity: 1; }
+.cursor-ring.label { width: 66px; height: 66px; background: var(--accent); opacity: 1; }
 .spark-canvas { position: fixed; inset: 0; pointer-events: none; z-index: 2999; }
 
 .curtain {
@@ -832,7 +832,9 @@ html.no-anim .curtain, html:not(.js) .curtain { display: none; }
 .footer { border-top: 1px solid var(--line); padding: 3.5rem 0 2rem; overflow: hidden; }
 .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 2rem; }
 .footer h4 { font-family: var(--font-mono); font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: var(--faint); font-weight: 500; margin-bottom: 1rem; }
-.footer ul { list-style: none; display: grid; gap: .45rem; }
+.footer ul { list-style: none; display: grid; gap: 0; }
+.footer li a { display: inline-block; padding: .5rem 0; }
+.menu-overlay .menu-foot a { display: inline-block; padding: .5rem 0; }
 .footer a { text-decoration: none; color: var(--muted); transition: color .3s; }
 .footer a:hover { color: var(--accent-text); }
 .footer-word {

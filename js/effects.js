@@ -455,8 +455,48 @@
     if (!canvas) return;
     const gl = canvas.getContext('webgl', { premultipliedAlpha: true, alpha: true, antialias: false });
     if (!gl) return;
+    const variant = canvas.dataset.bg || 'aurora';
     const vs = 'attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
-    const fs = `
+    // Threads (naar React Bits "Threads"): golvende draden die uit elkaar wijken rond de muis
+    const threadsFs = `
+      precision highp float;
+      uniform float t; uniform vec2 r; uniform vec2 m; uniform float px;
+      uniform vec3 c1; uniform vec3 c2; uniform vec3 c3; uniform float k;
+      float h(float x){return fract(sin(x*127.1)*43758.5453);}
+      float n(float x){float i=floor(x),f=fract(x);f=f*f*(3.-2.*f);return mix(h(i),h(i+1.),f);}
+      void main(){
+        vec2 uv=gl_FragCoord.xy/r;
+        float aspect=r.x/r.y;
+        vec2 mp=m+.5;
+        vec3 acc=vec3(0.);
+        const int N=26;
+        for(int i=0;i<N;i++){
+          float fi=float(i)/float(N-1);
+          float x=uv.x*aspect;
+          float spread=.18+.22*smoothstep(0.,1.,uv.x);
+          float base=.5+(fi-.5)*spread;
+          float amp=.025+.09*smoothstep(.0,1.,uv.x);
+          float y=base
+            +amp*(n(x*1.4+fi*2.3+t*.22)-.5)*2.
+            +sin(x*2.2+t*.35+fi*3.1)*.022*(.4+fi);
+          float dx=(uv.x-mp.x)*aspect;
+          float dy=y-mp.y;
+          float infl=exp(-dx*dx*9.)*exp(-dy*dy*28.);
+          y+=sign(dy)*infl*.07;
+          float d=abs(uv.y-y)*r.y;
+          float w=(.55+fi*.9)*px;
+          float line=smoothstep(w+px,0.,d);
+          float glow=(2.5*px)/(d+2.5*px)*.06;
+          float fade=smoothstep(0.,.35,uv.x);
+          vec3 c=mix(c1,c2,fi);
+          c=mix(c,c3,infl*.8);
+          acc+=c*(line*.85+glow)*fade*(.35+.65*fi);
+        }
+        acc=min(acc,vec3(1.));
+        float a=max(acc.r,max(acc.g,acc.b))*k;
+        gl_FragColor=vec4(acc*k,a);
+      }`;
+    const auroraFs = `
       precision mediump float;
       uniform float t; uniform vec2 r; uniform vec2 m;
       uniform vec3 c1; uniform vec3 c2; uniform vec3 c3; uniform float k;
@@ -479,6 +519,7 @@
         float a=clamp(glow*2.4,0.,1.)*k;
         gl_FragColor=vec4(col*a,a);
       }`;
+    const fs = variant === 'threads' ? threadsFs : auroraFs;
     const sh = (type, src) => { const s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s); return s; };
     const prog = gl.createProgram();
     gl.attachShader(prog, sh(gl.VERTEX_SHADER, vs));
@@ -493,7 +534,7 @@
     gl.enableVertexAttribArray(loc);
     gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
     const U = (n) => gl.getUniformLocation(prog, n);
-    const u = { t: U('t'), r: U('r'), m: U('m'), c1: U('c1'), c2: U('c2'), c3: U('c3'), k: U('k') };
+    const u = { t: U('t'), r: U('r'), m: U('m'), px: U('px'), c1: U('c1'), c2: U('c2'), c3: U('c3'), k: U('k') };
 
     const hex = (v) => { const x = v.trim().replace('#', ''); return [0, 2, 4].map((i) => parseInt(x.substr(i, 2), 16) / 255); };
     function colors() {
@@ -501,18 +542,20 @@
       gl.uniform3fv(u.c1, hex(cs.getPropertyValue('--accent')));
       gl.uniform3fv(u.c2, hex(cs.getPropertyValue('--accent-2')));
       gl.uniform3fv(u.c3, hex(cs.getPropertyValue('--accent-3')));
-      gl.uniform1f(u.k, document.documentElement.dataset.theme === 'light' ? 0.32 : 0.42);
+      const light = document.documentElement.dataset.theme === 'light';
+      gl.uniform1f(u.k, variant === 'threads' ? (light ? 0.85 : 0.75) : (light ? 0.32 : 0.42));
     }
     colors();
     document.addEventListener('themechange', () => { colors(); if (reduce) frame(8000); });
 
-    const scale = 0.5;
+    const scale = variant === 'threads' ? Math.min(window.devicePixelRatio || 1, 1.5) : 0.5;
     function resize() {
       const w = canvas.clientWidth; const h = canvas.clientHeight;
       canvas.width = Math.max(1, Math.round(w * scale));
       canvas.height = Math.max(1, Math.round(h * scale));
       gl.viewport(0, 0, canvas.width, canvas.height);
       gl.uniform2f(u.r, canvas.width, canvas.height);
+      gl.uniform1f(u.px, scale);
     }
     resize();
     window.addEventListener('resize', () => { resize(); if (reduce) frame(8000); });
