@@ -16,9 +16,10 @@
       </div>
       <div class="chat-messages" id="chatMessages" data-lenis-prevent aria-live="polite"></div>
       <form class="chat-form" id="chatForm">
-        <input type="text" id="chatInput" placeholder="Typ je vraag..." autocomplete="off" required aria-label="Je vraag">
+        <input type="text" id="chatInput" placeholder="Typ je vraag..." autocomplete="off" required maxlength="1000" aria-label="Je vraag">
         <button type="submit" id="chatSend">Stuur</button>
       </form>
+      <p class="chat-note">Antwoorden komen van AI (Google Gemini) en kunnen fouten bevatten. Je vragen worden bewaard zodat je het gesprek later terugziet; met "Wis gesprek" verwijder je ze. Deel geen persoonlijke gegevens. Maximaal 20 vragen per uur.</p>
     </div>`;
   document.body.append(...wrap.children);
 

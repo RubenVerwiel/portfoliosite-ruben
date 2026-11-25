@@ -923,6 +923,7 @@ html.no-anim .curtain, html:not(.js) .curtain { display: none; }
 .chat-form input:focus { border-color: var(--accent); }
 .chat-form button { background: var(--accent); color: var(--accent-ink); border: 0; border-radius: 999px; padding: 0 1rem; font-weight: 600; cursor: pointer; }
 .chat-form :disabled { opacity: .55; cursor: not-allowed; }
+.chat-note { margin: 0; padding: 0 1rem .8rem; color: var(--muted); font-size: .7rem; line-height: 1.4; }
 
 /* ==========================================================================
    ANIMATIE-STARTSTATEN (alleen als JS + animaties aan staan)

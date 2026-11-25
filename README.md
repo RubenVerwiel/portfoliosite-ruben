@@ -37,6 +37,14 @@ python3 -m http.server 8000
 
 Open daarna http://localhost:8000. De AI-chat werkt alleen op Vercel (daar draait `api/chat.js`).
 
+## AI-chat: limiet en privacy
+
+- Max. **20 vragen per uur per bezoeker** en **300 per dag voor de hele site** (aan te passen met `CHAT_LIMIT_PER_HOUR` en `CHAT_LIMIT_PER_DAY` in Vercel). Pas als de limiet "ja" zegt, wordt Gemini aangeroepen. Vragen langer dan 1000 tekens worden geweigerd, en alleen de laatste 20 berichten gaan mee naar Gemini.
+- Bezoekers worden geteld op een **hash van hun IP-adres**; het echte adres wordt nergens opgeslagen. Tellingen ouder dan 2 dagen worden automatisch gewist. Optioneel: zet een geheime `CHAT_IP_SALT` in Vercel.
+- De API praat met Supabase via de functies `chat_allow`, `chat_get`, `chat_save` en `chat_clear` (zie `supabase/migrations/`). Een bezoeker ziet en wist alleen zijn eigen gesprek, met de willekeurige id uit zijn browser.
+- Zonder `SUPABASE_URL` en `SUPABASE_PUBLISHABLE_KEY` weigert de chat (dan kan de limiet niet bewaakt worden).
+- De Gemini-key gaat in een header mee, niet in de URL, zodat hij niet in logs belandt.
+
 ## Live zetten
 
 De site is statisch en heeft geen build-stap. Elke push naar `main` gaat vanzelf live via Vercel.
